@@ -3,6 +3,7 @@
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+ 
 
 export PATH=~/Coding/SHELL:"$PATH"
 export PATH=~/semester/COAL/"course material"/tools/:"$PATH"
@@ -11,26 +12,30 @@ export PATH=$HOME/.config/nvcode/utils/bin:$PATH
 export PATH="$PATH:/home/awais/.local/bin"
 export XDG_CONFIG_HOME="$HOME/.config"
 
+export EDITOR='nvim'
+export VISUAL=$EDITOR
+export PAGER='less'
+export UPDATE_INTERVAL=15
+
 #CUSTOM Settings#
 
 bindkey '^F' autosuggest-accept
 bindkey -M viins '^?' backward-delete-char
 bindkey -M viins '^H' backward-delete-char
-[ -z "$HISTFILE" ] && HISTFILE="$HOME/.zhistory"
 HISTSIZE=3000
 SAVEHIST=$HISTSIZE
-export EDITOR='nvim'
-export VISUAL=$EDITOR
-export PAGER='less'
-export UPDATE_INTERVAL=15
 autoload colors && colors
 ZLE_RPROMPT_INDENT=0  
+[ -z "$HISTFILE" ] && HISTFILE="$HOME/.zhistory"
 setopt histignorealldups sharehistory
-ENABLE_CORRECTION="true"
 eval "$(fasd --init auto)"
 
-#ALIASES
 
+#ALIASES
+alias icat="kitty +kitten icat"
+# alias icat="icat -w 50"
+alias ...="cd ../.."
+alias kconf="nvim ~/.config/kitty/kitty.conf"
 alias md="mkdir"
 alias lifeos="cd ~/LifeOS"
 alias p="python3"
@@ -65,24 +70,23 @@ alias g="g++ -o"
 alias dvim="cd ~/.config/nvim"
 alias work="cd ~/Coding"
 alias lesss="less * | lolcat"
-alias neofetch="neofetch | lolcat"
-alias a='fasd -a'        # any
-alias s='fasd -si'       # show / search / select
-alias d='fasd -d'        # directory
-alias f='fasd -f'        # file
+alias neofetch="neofetch --backend kitty --source ~/Pictures/icons/arcclogo.png"
+alias a='fasd -a | cat'        # any
+alias s='fasd -si | cat'       # show / search / select
+alias d='fasd -d | cat'        # directory
+alias f='fasd -f | cat'        # file
 alias sd='fasd -sid'     # interactive directory selection
 alias sf='fasd -sif'     # interactive file selection
 alias j='fasd_cd -d'     # cd, same functionality as j in autojump
 alias jj='fasd_cd -d -i' # cd with interactive selection
-alias v='f -e nvim'
+alias v='fasd -f -e nvim'
+# alias v='fasd -f -t -e vim -b viminfo'
 alias fzf="fzf --height=40% --layout=reverse"
 unalias z
- 
 # alias v='f -t -e vim -b viminfo'
 
-
 # >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
+
 __conda_setup="$('/home/awais/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
   eval "$__conda_setup"
@@ -100,17 +104,11 @@ unset __conda_setup
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nv
 
 
-
 # - - - - - - - - - - - - - - - - - - - -
 # Zinit Configuration
 # - - - - - - - - - - - - - - - - - - - -
 
 __ZINIT="${ZDOTDIR:-$HOME}/.zinit/bin/zinit.zsh"
- 
-
-#####################
-# ZINIT             #
-#####################
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
@@ -125,14 +123,13 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 ### End of Zinit installer's chunk
 
-#####################
-# THEME             #
-#####################
+# THEME
+
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
-#####################
-# PLUGINS           #
-#####################
+
+# PLUGINS    
+
 # SSH-AGENT
 # zinit light bobsoppe/zsh-ssh-agent
 
@@ -234,12 +231,21 @@ zinit light "chriswalz/bit"
 
 # ZSH MANYDOTS MAGIC
 # zinit autoload'#manydots-magic' for knu/zsh-manydots-magic
-zinit light "b4b4r07/enhancd"
+# zinit light "b4b4r07/enhancd"
 
 # zinit ice wait'0' lucid atload"unalias d"
 # zinit snippet OMZ::plugins/fasd/fasd.plugin.zsh
 # binding fzf and fasd
 zinit light "wookayin/fzf-fasd"
+# pip autocompletion
+eval "`pip completion --zsh`"
+compctl -K _pip_completion pip3
+
+# kitty terminal autocompletion
+autoload -Uz compinit
+compinit
+kitty + complete setup zsh | source /dev/stdin
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+export PATH=$HOME/.config/nvcode/utils/bin:$PATH
