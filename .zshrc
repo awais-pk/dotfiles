@@ -5,7 +5,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
  
 export JAVA_OPTS='-XX:+IgnoreUnrecognizedVMOptions'
-export JAVA_HOME='/usr/lib/jvm/java-8-openjdk/bin'
+export JAVA_HOME='/usr/lib/jvm/java-8-openjdk'
 export ANDROID_SDK_ROOT='/opt/android-sdk'
 export ANDROID_HOME='/opt/android-sdk'
 # Android SDK
@@ -15,7 +15,7 @@ export PATH=$PATH:$ANDROID_SDK_ROOTtools/bin/
 export PATH=$PATH:$ANDROID_SDK_ROOT/tools/
 PATH=$ANDROID_SDK_ROOT/emulator:$PATH
 
-export PATH=$JAVA_HOME/bin:$PATH
+export PATH=/usr/lib/jvm/java-8-openjdk/bin:$PATH
 export PATH=~/Coding/SHELL:"$PATH"
 export PATH=~/semester/COAL/"course material"/tools/:"$PATH"
 export PATH="$PATH":/home/awais/anaconda3/bin
