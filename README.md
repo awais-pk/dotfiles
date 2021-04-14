@@ -5,4 +5,4 @@
 - .gitconfig
 - kitty => colors.conf kitty.conf
 - neofetch  => config.conf
-- ranger
+- ranger 

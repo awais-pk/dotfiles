@@ -8,14 +8,15 @@ export JAVA_OPTS='-XX:+IgnoreUnrecognizedVMOptions'
 export JAVA_HOME='/usr/lib/jvm/java-8-openjdk'
 export ANDROID_SDK_ROOT='/opt/android-sdk'
 export ANDROID_HOME='/opt/android-sdk'
+export CHROME_EXECUTABLE='/usr/bin/google-chrome-stable'
 # Android SDK
 export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
 export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools/
-export PATH=$PATH:$ANDROID_SDK_ROOTtools/bin/
+export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin/
 export PATH=$PATH:$ANDROID_SDK_ROOT/tools/
 PATH=$ANDROID_SDK_ROOT/emulator:$PATH
 
-export PATH=/usr/lib/jvm/java-8-openjdk/bin:$PATH
+# export PATH=/usr/lib/jvm/java-8-openjdk/bin:$PATH
 export PATH=~/Coding/SHELL:"$PATH"
 export PATH=~/semester/COAL/"course material"/tools/:"$PATH"
 export PATH="$PATH":/home/awais/anaconda3/bin
@@ -43,6 +44,7 @@ eval "$(fasd --init auto)"
 
 
 #ALIASES
+alias kfont="kitty + list-fonts --psnames"
 alias icat="kitty +kitten icat"
 # alias icat="icat -w 50"
 alias ...="cd ../.."
@@ -213,28 +215,28 @@ alias bd=batdiff.sh
 alias man=batman.sh
 
 # RIPGREP
-zinit ice from"gh-r" as"program" mv"ripgrep* -> ripgrep" pick"ripgrep/rg"
-zinit light BurntSushi/ripgrep
+# zinit ice from"gh-r" as"program" mv"ripgrep* -> ripgrep" pick"ripgrep/rg"
+# zinit light BurntSushi/ripgrep
 
 # FORGIT
 zinit ice wait lucid
 zinit load 'wfxr/forgit'
 
 # LAZYGIT
-zinit ice lucid wait"0" as"program" from"gh-r" mv"lazygit* -> lazygit" atload"alias lg='lazygit'"
-zinit light 'jesseduffield/lazygit'
+# zinit ice lucid wait"0" as"program" from"gh-r" mv"lazygit* -> lazygit" atload"alias lg='lazygit'"
+# zinit light 'jesseduffield/lazygit'
 
 # RANGER
-zinit ice depth'1' as"program" pick"ranger.py"
-zinit light ranger/ranger
+# zinit ice depth'1' as"program" pick"ranger.py"
+# zinit light ranger/ranger
 
 # FD
-zinit ice as"command" from"gh-r" mv"fd* -> fd" pick"fd/fd"
-zinit light sharkdp/fd
+# zinit ice as"command" from"gh-r" mv"fd* -> fd" pick"fd/fd"
+# zinit light sharkdp/fd
 
 # GH-CLI
-zinit ice lucid wait"0" as"program" from"gh-r" pick"usr/bin/gh"
-zinit light "cli/cli"
+# zinit ice lucid wait"0" as"program" from"gh-r" pick"usr/bin/gh"
+# zinit light "cli/cli"
 
 # BIT
 zinit ice lucid wait"0" as"program" from"gh-r" pick"bit"
@@ -247,7 +249,7 @@ zinit light "chriswalz/bit"
 # zinit ice wait'0' lucid atload"unalias d"
 # zinit snippet OMZ::plugins/fasd/fasd.plugin.zsh
 # binding fzf and fasd
-zinit light "wookayin/fzf-fasd"
+# zinit light "wookayin/fzf-fasd"
 # pip autocompletion
 eval "`pip completion --zsh`"
 compctl -K _pip_completion pip3
